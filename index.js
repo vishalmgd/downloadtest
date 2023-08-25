@@ -5,25 +5,25 @@ const compression = require("compression");
 const app = new express();
 
 app.use(compression());
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const fileUpload = require("express-fileupload");
-const db = require("./db")();
+// const db = require("./db")();
 
 // let flash= require('connect-flash');
 // const { cacheMiddleware } = require("./routeCache");
 
 const {
   showhomepage,
-  createpost,
-  postdata,
-  showpost,
-  createuser,
-  storeuser,
-  loginpage,
-  loginauth,
-  logout,
-  categorywise,
-  deletepost,
+  // createpost,
+  // postdata,
+  // showpost,
+  // createuser,
+  // storeuser,
+  // loginpage,
+  // loginauth,
+  // logout,
+  // categorywise,
+  // deletepost,
 } = require("./controllers/postcontroller.js");
 const { calci, sipcalcfn,LumpsumCalculator,Lumsumpcalcfn  } = require("./controllers/calculator");
 const { bmicalci, bmiCalculator, bmicalcfn  } = require("./controllers/bmicalculator");
@@ -54,7 +54,7 @@ const port = process.env.PORT || 3000;
 const User = require("./models/User");
 //
 const expressSession = require("express-session");
-const mongoStore = require("connect-mongo");
+// const mongoStore = require("connect-mongo");
 
 // Set EJS as templating engine
 app.set("view engine", "ejs");
@@ -90,41 +90,47 @@ app.use(
 );
 
 /// it help in storing user seesion
-app.use(
-  expressSession({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false,
-    store: mongoStore.create({
-      mongoUrl: process.env.MONGO_URL, // mongodb://localhost:27017
-      // mongoUrl: Mydb, // mongodb://localhost:27017
-      autoReconnect: true,
-    }),
-  })
-);
+// app.use(
+//   expressSession({
+//     secret: "secret",
+//     resave: false,
+//     saveUninitialized: false,
+//     store: mongoStore.create({
+//       mongoUrl: process.env.MONGO_URL, // mongodb://localhost:27017
+//       // mongoUrl: Mydb, // mongodb://localhost:27017
+//       autoReconnect: true,
+//     }),
+//   })
+// );
 
 // This makes Global variable
 // user global varialbel object with all user information
 // auth user id
-app.use("*", async (req, res, next) => {
-  if (req.session.userId) {
-    const user = await User.findById(req.session.userId);
-    res.locals.auth = req.session.userId;
-    res.locals.user = user;
+///////
+// app.use("*", async (req, res, next) => {
+//   if (req.session.userId) {
+//     const user = await User.findById(req.session.userId);
+//     res.locals.auth = req.session.userId;
+//     res.locals.user = user;
+
+
+    ////
     // console.log('middleware called inside if');
 
     // console.log(`checking session data in middleware ${res.locals.auth}`);
     // console.log(
     //   `checking session data in middleware ${res.locals.user.username}`
     // );
-  } else {
-    res.locals.auth = false;
-    res.locals.user = null;
-  }
 
-  next();
-});
+    ////////
+//   } else {
+//     res.locals.auth = false;
+//     res.locals.user = null;
+//   }
 
+//   next();
+// });
+//////
 app.get("/", showhomepage);
 
 app.get("/cal", calci);
@@ -141,21 +147,21 @@ app.post("/bmical", bmicalcfn );
 ////
 
 
-app.get("/post/new", createpost);
+// app.get("/post/new", createpost);
 
-app.post("/post/data", postdata);
-app.get("/post/:id", showpost);
-app.get("/auth/register", createuser);
-app.post("/users/register", storeuser);
-app.get("/users/login", loginpage);
-app.post("/user/auth", loginauth);
-app.get("/user/logout", logout);
-/////////for deleteing post//////////////////
-app.get("/delete/:id", deletepost);
+// app.post("/post/data", postdata);
+// app.get("/post/:id", showpost);
+// app.get("/auth/register", createuser);
+// app.post("/users/register", storeuser);
+// app.get("/users/login", loginpage);
+// app.post("/user/auth", loginauth);
+// app.get("/user/logout", logout);
+// /////////for deleteing post//////////////////
+// app.get("/delete/:id", deletepost);
 
-/////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////
 
-app.post("/route", categorywise);
+// app.post("/route", categorywise);
 
 /////Instagra
 app.get("/insta", instadld);
