@@ -1,165 +1,4 @@
-// // const router = require("express").Router();
-// const axios = require("axios");
-// (cheerio = require("cheerio")), (qs = require("qs"));
-// const ErrorHandler = require("../errors/ErrorHandler");
-// const twitterGetUrl = require("./tweet");
 
-// // const bodyParser = require("body-parser");
-// //
-// // let bestqturl;
-// // let bestformat;
-// // let lowqturl;
-// // let lowformat;
-// let username;
-
-// const twitterdld= (req, res) => {
-
-//   res.render("twitterpage", {
-//     // title: "Twitterpage",
-//     // bestqturl: "",
-//     // lowqturl: "",
-//       dimurl:'',
-
-//   });
-// };
-
-// ///////////////////////////////////////////////////////////////////////////////////////////
-
-// async function test(url) {
-//   let result = await twitterGetUrl(url);
-//   // console.log(`here test url result ${result}`);
-//   return result;
-// }
-// /////////////////////////////////////////////////////////////////////////////
-// const twitterdownload =((req, res) => {
-//   const selectedRadioButton = req.body.radioButton;
-//   console.log(`Selected radio button: ${selectedRadioButton}`);
-//   console.log(`checking req body: ${req.body}`);
-//   handleFormSubmit(selectedRadioButton, res);
-
-// });
-// //////////////////////////////////////////////////////
-
-// const twitterpost= async (req, res) => {
-//   const url = req.body.url;
-
-//   if (!url) {
-//     const error = ErrorHandler.validationError("Please provide a valid URL!");
-//     return res.status(error.status).json({ message: error.message });
-
-//   }
-
-//   // res.send(url);
-//   try {
-//     const urlobj = await test(url)
-//       .then((result) => {
-//         const urlList = result.download;
-//         console.log("========================");
-
-//         const dimurl = result.download;
-//         console.log(`u r checking dimurl ${dimurl}`);
-
-//         ///
-
-//         let array = [];
-//         for (let i = 0; i < dimurl.length; i++) {
-//           console.log(dimurl[i].dimension + ":::" + dimurl[i].url);
-//           // let `url${i}`
-
-//           array.push({
-//             format: dimurl[i].dimension,
-//             url: dimurl[i].url,
-//           });
-//         }
-//         req.session.dimurl=array
-//         req.session.totalvideo=array.length
-
-//     // console.log(`this is req session ${req.session.dimurl}`);
-//     // console.log(`this is req session count ${req.session.totalvideo}`);
-//         username = result.tweet_user.name;
-//         // req.session.newusername = result.tweet_user.name;
-
-//         console.log("===========================");
-//         bestqturl = urlList[urlList.length - 1].url;
-//         bestformat = urlList[urlList.length - 1].dimension;
-
-//         lowqturl = urlList[urlList.length - 2].url;
-//         lowformat = urlList[urlList.length - 2].dimension;
-
-//         console.log(`best quality ${bestqturl} ${bestformat}`);
-//         console.log(`low quality ${lowqturl} ${lowformat}`);
-//         // console.log(lasturl);
-//         //
-//         // req.session.dimurl=array
-//         // req.session.totalvideo=array.length
-//         console.log(req.session.dimurl[0]);
-
-//         ///
-//         res.render("twitterpage", {
-//           title: "Twitterpage",
-//           // hello: "vishnu how are you",
-//           dimurl: req.session.dimurl,
-//           totalnovideo: req.session.totalvideo,
-//           // bestqturl: bestformat,
-//           // lowqturl: lowformat,
-//         });
-
-//         // handleFormSubmit(bestqturl, res, username);
-//         // res.send("success");
-//       })
-//       .catch((err) => {
-//         console.dir(
-//           {
-//             test: "Image Test",
-//             status: "error",
-//             result: err,
-//           },
-//           { depth: null }
-//         );
-//         /// validating urls are correct or not
-
-//         // if (err) {
-//         //   const error = ErrorHandler.validationError(
-//         //     "You have provided wrong url"
-//         //   );
-//         //   return res.status(error.status).json({ message: error.message });
-//         // }
-//       });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send(error);
-//   }
-// };
-
-// handleFormSubmit = async (urlstr, res) => {
-
-//   try {
-//     const response = await axios({
-//       method: "GET",
-//       url: urlstr,
-//       responseType: "stream",
-//     });
-
-//     const filename = 'Twittervideo.mp4';
-//     // console.log(`this item isin handlesubmit if block ext check ${urlstr}`);
-//     // console.log("======================================================");
-//     res
-//       .status(200)
-//       .set("Content-Type", "video/mp4")
-//       .set("Content-Disposition", "attachment; filename=" + filename);
-
-//     response.data.pipe(res);
-//   } catch (error) {
-//     console.log(`Error: ${error}`);
-//     res.status(500).send(error);
-//   }
-// };
-
-// module.exports ={twitterdld,twitterpost,twitterdownload};
-
-///////////////working
-
-// const router = require("express").Router();
 require("dotenv").config();
 const axios = require("axios");
 const youtubedl = require("youtube-dl-exec");
@@ -291,17 +130,23 @@ const twitterpost = async (req, res) => {
         // await page.waitForSelector("video");
         await page.waitForSelector("video", { timeout: 90000 }); // Timeout set to 5 seconds (5,000 milliseconds)
 
-        const tweetData = await page.evaluate(
-          () => {
-            const videoElement = document.querySelector("video");
-            return {
-              videoUrl: videoElement.src,
-            };
-          },
-          { timeout: 90000 } // Timeout set to 90 seconds (90,000 milliseconds)
-        );
+        const videoElement = await page.$("video");
+        const videoUrl = await videoElement.evaluate((element) => element.src);
+        console.log("inside getVideoUrl function",videoUrl);
+    
+        return videoUrl;
 
-        return tweetData.videoUrl;
+        // const tweetData = await page.evaluate(
+        //   () => {
+        //     const videoElement = document.querySelector("video");
+        //     return {
+        //       videoUrl: videoElement.src,
+        //     };
+        //   },
+        //   { timeout: 90000 } // Timeout set to 90 seconds (90,000 milliseconds)
+        // );
+
+        // return tweetData.videoUrl;
       } catch (error) {
         console.error("Error:", error);
       } finally {
@@ -313,7 +158,7 @@ const twitterpost = async (req, res) => {
 
     if (videoUrl) {
       // Instead of downloading the video, send the video URL to the client
-      console.log(videoUrl);
+       console.log("outside getVideoUrl function",videoUrl);
       // handleFormSubmit(videoUrl, res);
       // // res.json({ videoUrl: videoUrl });
       res.render("twitterpage", {
