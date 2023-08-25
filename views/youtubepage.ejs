@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <meta name="description" content="Download your favorite YouTube videos with our easy to use YouTube downloader tool. High-quality downloads, fast speeds, and user-friendly interface.">
+    <meta name="keywords" content="YouTube downloader, video downloader, YouTube videos, high-quality download,youtube video downloader,youtube video download">
+    <meta name="robots" content="index, follow">
+    
+        <title><%= title  %></title>
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    
+    <link href="/css/styles.css" rel="stylesheet" />
+
+
+
+
+  </head>
+ 
+
+<body>
+    <%- include('./layouts/navbar.ejs'); %>
+
+  
+
+    <header
+    id="backgroundforheader"
+    class="masthead"
+    style="background-image: url('https://source.unsplash.com/1920x1280/?nature')"
+  >
+    <div class="container position-relative px-4 px-lg-5" style="margin-top: -100px;">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="site-heading">
+            <!-- <h1>Blogger Zone</h1>
+            <span class="subheading">A Blog Theme by Vishnuji.com</span> -->
+            <div
+            class="d-flex flex-column justify-content-center align-items-center mb-3"
+          >
+
+            <h2>YOUTUBE DOWNLOAD</h2>
+      
+            <div class="container mt-5">
+              
+              <div className="card-body">
+                <!-- <a href="/download1">Download</a> -->
+      
+                <form action="/youtubedld" method="POST">
+                  <input
+                    type="text"
+                    name="url"
+                    placeholder="Enter url here"
+                    className="form-control mt-2"
+                    size="20"
+                  />
+                  <br><br>
+                  <button type="submit" className="btn btn-primary mt-3">
+                    Submit
+                  </button>
+                </form>
+              </div>
+<hr>
+              <div
+              class="btn-group-vertical"
+              role="group"
+              aria-label="Vertical radio toggle button group"
+              style="margin-top: -36px;" 
+            >
+            <% if(link360p) { %>
+            <form action="/ytdownloading" method="post" id="myForm1">
+
+            
+              
+              <% if(link1080p) { %>
+              <input type="radio" id="radio1" name="radioButton" value= <%= link1080p  %>>
+              <label for="radio1">Video Quality: <%= format1080p %></label>
+              <% } %>
+
+              <br>
+              <% if(link720p) { %>
+              <input type="radio" id="radio1" name="radioButton" value= <%= link720p  %>>
+              <label for="radio1">Video Quality: <%= format720p %></label>
+              <% } %>
+              <br>
+              <input type="radio" id="radio1" name="radioButton" value= <%= link360p  %>>
+              <label for="radio1">Video Quality: <%= format360p %></label>
+              <br><br>
+           
+
+              <input type="submit" value="Download Video" style="border-radius: 30px;padding: 10px;">
+              <hr>
+              <br>
+
+
+              <div style="margin-top:-35px ;">
+
+              <% if(audiolink) { %>
+                <input type="radio" id="radio1" style="margin-bottom: 20px;" name="radioButton" value= <%= audiolink  %>>
+                <label for="radio1">Audio file: </label>
+                <% } %>
+
+              <!-- your existing radio buttons and submit button -->
+              <button style="border-radius: 20px;" id="bgcolor" type="button" onclick="playAudio()">Select & Press</button>
+            
+            </div>
+
+             
+            </form>
+            <% } %>
+    
+            </div>
+
+            <!-- Audio player -->
+
+            <% if(audiolink) { %>
+
+              <div class="container mt-5" id="audio-container" style="display: none;">
+                <div class="row">
+                  <div class="col-md-12" >
+                    <h4>Press on &#x22EE; for Download</h4>
+                    <audio controls id="audio-player" style="width: 100%;  min-width: 200px; margin-left: -25px;">
+                      Your browser does not support the audio element.
+                    </audio>
+                 
+                  </div>
+                </div>
+              </div>
+              
+
+   
+            <% } %>
+
+
+            
+          </div>
+      
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+   <%- include('./layouts/footer.ejs'); %>
+   <!-- Bootstrap core JS-->
+   <%- include('./layouts/scriptag.ejs'); %>
+   <script
+   src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+   integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+   crossorigin="anonymous"
+ ></script>
+ 
+<script>
+ function playAudio() {
+
+  //change buttopn color
+  const button = document.getElementById("bgcolor");
+  button.style.backgroundColor = "blue";
+  setTimeout(function() {
+    button.style.backgroundColor = ""; // Set to initial value
+  }, 300); // Revert back after 1 second
+
+
+  // get the selected audio link
+  var selectedLink = document.querySelector('input[name="radioButton"]:checked').value;
+
+  // create an audio element
+  var audioPlayer = document.getElementById("audio-player");
+  
+  // set the source attribute of the audio element to the selected audio link
+  audioPlayer.setAttribute("src", selectedLink);
+  
+  // play the audio
+  audioPlayer.play();
+
+     // show the audio container
+     document.getElementById("audio-container").style.display = "block";
+}
+</script>
+
+
+
+
+</body>
+</html>

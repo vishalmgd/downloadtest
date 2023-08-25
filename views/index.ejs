@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- headtag -->
+
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    <link href="/css/styles.css" rel="stylesheet" />
+    <meta
+    name="description"
+    content="All type downloaders and blog dedicated to latest technology news, reviews, and tutorials. Stay updated with the latest advancements in the tech world."
+  />
+  <meta name="keywords" content="technology, blog, news, reviews, tutorials" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Vishnu kumar" />
+  <title>Homepage</title>
+  </head>
+
+ 
+  <body>
+    <!-- Navigation-->
+    <%- include('./layouts/navbar.ejs'); %>
+    <!-- Page Header-->
+    <%- include('./layouts/header.ejs'); %>
+
+    <h2>List Of Blogs:</h2>
+    <form action="/route" method="post">
+      <label for="category">Choose a category:</label>
+      <select id="category" name="category">
+        <option selected>All</option>
+        <option value="1">Art and design blogs</option>
+        <option value="2">Computer science and Technology</option>
+        <option value="3">Political blogs</option>
+        <option value="4">Movie blogs</option>
+        <option value="5">Sports blogs</option>
+        <option value="6">Business blogs</option>
+        <option value="7">Personal finance blogs</option>
+        <option value="8">Blockchain & Cryptocurrency</option>
+        <option value="9">Food Blog</option>
+        <option value="9">Travel Blog</option>
+        <option value="10">Other</option>
+        <option value="11">General</option>
+      </select>
+      <input type="submit" value="Submit" />
+    </form>
+
+    <!-- Main Content below -->
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <!-- Post preview-->
+
+          <% posts.reverse(); posts.map((item)=>{ %>
+          <div class="post-preview">
+            <a href="/post/<%= item._id %>">
+              <h2 class="post-title"><%= item.title %></h2>
+              <h3 class="post-subtitle"><%= item.description %></h3>
+              <!-- <%= item.image %> -->
+              <%= item.category %>
+            </a>
+            <p class="post-meta">
+              <span>Posted by</span>
+              <a href="#!" aria-label="View profile of <%= item.username %>"
+                ><%= item.username %></a
+              >
+
+              on <%= item.indianDate %> at <%= item.indianTime %>
+            </p>
+          </div>
+          <!-- Divider-->
+          <hr class="my-4" />
+
+          <% }) %>
+
+          <!-- Pager-->
+          <!-- <div class="d-flex justify-content-end mb-4">
+            <a class="btn btn-primary text-uppercase" href="#!"
+              >Older Posts →</a
+            >
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer-->
+    <%- include('./layouts/footer.ejs'); %>
+    <!-- Bootstrap core JS-->
+    <%- include('./layouts/scriptag.ejs'); %>
+    <script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+  crossorigin="anonymous"
+></script>
+
+  </body>
+</html>

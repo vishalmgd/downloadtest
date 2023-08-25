@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    
+
+    <meta name="description" content="Download your favorite Instagram videos, images, and posts with our easy to use Instagram downloader tool. High-quality downloads, fast speeds, and user-friendly interface.">
+    <meta name="keywords" content="Instagram downloader, Instagram videos, Instagram images,Instagram image downloader, high-quality download,Instagram video downloader,Instagram reel downloader,Instagram reel download">
+    <meta name="robots" content="index, follow">
+  
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    
+    <link href="/css/styles.css" rel="stylesheet" />
+      <!-- Navigation-->
+      <title>Instagram Download zone</title>
+  </head>
+
+
+    
+  <body>
+    <%- include('./layouts/navbar.ejs'); %>
+    <!-- Page Header-->
+    <header
+    id="backgroundforheader"
+    class="masthead"
+    style="background-image: url('https://source.unsplash.com/1920x1280/?life')"
+  >
+    <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <div class="site-heading">
+            <!-- <h1>Blogger Zone</h1>
+            <span class="subheading">A Blog Theme by Vishnuji.com</span> -->
+            <div
+            class="d-flex flex-column justify-content-center align-items-center mb-3"
+          >
+            <h2>INSTA REEL DOWNLOAD</h2>
+      
+            <div class="container mt-5">
+              
+              <div className="card-body">
+                <!-- <a href="/download1">Download</a> -->
+      
+                <form action="/insta" method="POST">
+                  <input
+                    type="text"
+                    name="urlname"
+                    placeholder="Enter url here"
+                    className="form-control mt-3"
+                    size="20"
+                  />
+                  <br><br>
+                  <button type="submit" className="btn btn-primary mt-3">
+                    Submit
+                  </button>
+                </form>
+              </div>
+       
+          </div>
+      
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+    
+    <%- include('./layouts/footer.ejs'); %>
+    <!-- Bootstrap core JS-->
+    <%- include('./layouts/scriptag.ejs'); %>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"
+  ></script>
+  
+  </body>
+</html>

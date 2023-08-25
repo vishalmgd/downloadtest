@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- headtag -->
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="Individual blog dedicated to latest technology news, reviews, and tutorials. Stay updated with the latest advancements in the tech world.">
+    <meta name="keywords" content="technology, blog, news, reviews, tutorials">
+    <meta name="robots" content="index, follow">
+    <title>Blog post</title>
+
+    
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
+    
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+ 
+  <body>
+    <!-- Navigation-->
+    <%- include('./layouts/navbar.ejs'); %>
+    <!-- Page Header-->
+    
+    <header id="backgroundforheader" class="masthead" style="background-image: url('https://source.unsplash.com/category/blog')">
+        <div class="container position-relative px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="site-heading">
+                        <h1> <%= post.title %></h1>
+                        <span class="subheading"><%= post.description %></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+    <form action="/route" method="post">
+      <label for="category">Choose a category:</label>
+      <select id="category" name="category">
+        <option selected>All</option>
+        <option value="1">Art and design blogs</option>
+        <option value="2">Computer science and Technology</option>
+        <option value="3">Political blogs</option>
+        <option value="4">Movie blogs</option>
+        <option value="5">Sports blogs</option>
+        <option value="6">Business blogs</option>
+        <option value="7">Personal finance blogs</option>
+        <option value="8">Blockchain & Cryptocurrency</option>
+        <option value="9">Food Blog</option>
+        <option value="9">Travel Blog</option>
+        <option value="10">Other</option>
+        <option value="11">General</option>
+        
+      </select>
+      <input type="submit" value="Submit">
+    </form>
+<br>
+    <!-- Main Content below -->
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+          <!-- Post preview-->
+        
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-md-10 col-lg-8 col-xl-7" style="width: 100%;">
+                
+                <% post.content.split("\n").forEach(function(line) { %>
+                  <% if (line !== "") { %>
+                    <%= line.replace(/ /g, '\u00A0') %>
+                    <br>
+                  <% } %>
+                <% }); %>
+                
+
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-4" />
+
+        
+     <div class="d-flex align-items-center justify-content-center">
+      <form action="/delete/<%= post.id %>" method="delete">
+        <button class="btn btn-primary style" id="delete-btn" style="border-radius: 30px;" type="submit">Delete</button>
+      </form>
+     </div>
+ 
+   
+  
+        <hr class="my-4" />
+          <!-- Pager-->
+       
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer-->
+    <%- include('./layouts/footer.ejs'); %>
+    <!-- Bootstrap core JS-->
+    <%- include('./layouts/scriptag.ejs'); %>
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"
+  ></script>
+  
+  </body>
+</html>

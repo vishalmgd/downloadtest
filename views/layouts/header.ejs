@@ -1,0 +1,110 @@
+<header
+  id="backgroundforheader"
+  class="masthead"
+  style="background-image: url('<%= randomImageUrl() %>')"
+>
+
+<picture>
+ 
+<source srcset="<%= randomImageUrl() %>" type="image/avif">
+<img src="<%= randomImageUrl() %>" alt="Random Image" style="width: 100%; height: auto; display: none;">
+
+
+</picture>
+
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div
+          class="site-heading"
+          onmouseover="this.style.color='#FF0000'"
+          onmouseout="this.style.color='#FFFFFF'"
+          style="transition: all 1s"
+        >
+          <h1>Blogger Download Zone</h1>
+          <span class="subheading">An Initiative by Vishnuji.com</span>
+   
+        </div>
+
+        <div
+        class="site-heading1"
+        onmouseover="this.style.color='#FF0000'"
+        onmouseout="this.style.color='#00FFFF'"
+        style="transition: all 1s"
+      >
+        <span class="subheading">CNN,RNN & Transformers/BERT (AI) based Projects coming soon</span>
+      </div>
+
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+<!-- <div class="container"  style="position: fixed; right: 0 ;margin-right:200px; transform: translateX(100%);font-size: 10px;">
+  <h6>Support:</h6>
+  <select id="category" name="category">
+    <option value="bc1qkavu6489emq638ug7204yz5cv277rkr6pqvphc">
+      Bitcoin
+    </option>
+    <option value="0xb1301092f1f405469AB4b9F0853880C4B620B3dD">
+      Ethereum-ETH (BEP-20)
+    </option>
+    <option value="0xb1301092f1f405469AB4b9F0853880C4B620B3dD">
+      USDT(BEP-20)
+    </option>
+    <option value="bnb1lmve8la9zumkvky9frnflz6fstr6r7m5svp36h">
+      BNB Coin
+    </option>
+    <option value="D7WMg5W6Kx2VfZ7DLrbTXyAipELqgbSpHX">
+      Dogecoin
+    </option>
+  </select>
+  <button id="copy-btn" onclick="copyToClipboard()">Copy</button>
+</div> -->
+
+<!-- 
+<script>
+  function copyToClipboard() {
+    var category = document.getElementById("category");
+    var selectedValue = category.options[category.selectedIndex].value;
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = selectedValue;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+  
+    var btn = document.getElementById("copy-btn");
+    btn.textContent = "Copied";
+    // console.log(btn.textContent);
+  
+    setTimeout(function() {
+      btn.textContent = "Copy";
+    }, 2000);
+  }
+  </script> -->
+
+
+<!-- from line 48
+
+The first line, var dummy = document.createElement("textarea"),
+ creates a new textarea element in the document.
+ This element is not visible on the page, 
+ but it can be used to hold the text that you want to copy to the clipboard.
+
+The second line, document.body.appendChild(dummy), 
+adds the textarea element to the body of the document.
+
+The third line, dummy.value = selectedValue, sets the value property of the textarea element to the text that you want to copy to the clipboard. In this case, it is the value of the selected option in the dropdown.
+
+The fourth line, dummy.select(), selects the text in the textarea element, which prepares it to be copied to the clipboard.
+
+Finally, the document.execCommand("copy") line executes the copy command, which copies the selected text to the clipboard.
+
+After the text has been copied to the clipboard, the document.body.removeChild(dummy) line removes the textarea element from the document, since it is no longer needed.
+
+
+-->

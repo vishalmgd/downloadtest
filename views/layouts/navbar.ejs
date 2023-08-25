@@ -1,0 +1,179 @@
+<style>
+  .navbar-brand:hover,.nav-link:hover, .vishnu:hover {
+
+    transform: scale(1.2);
+  }
+
+  /* onmouseover="this.style.color='#FF0000'" onmouseout="this.style.color='#FFFFFF'" */
+
+  
+</style>
+
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-2 " style="margin-top: 2px;">
+          <a class="navbar-brand" href="/"   style="font-size: 17px;transition: all 0.3s;padding-left: 5px;text-align: center;margin-bottom: -11px;">Downloader 👉 <br> HomePage</a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onmouseover="this.style.color='#FF0000';this.style.transform='scale(1.2)'" onmouseout="this.style.color='#000000'; this.style.transform='scale(1)'"
+            style="border-radius: 30px; border-color: greenyellow;padding-top: 12px;padding-bottom: 12px;"
+          >
+            Downloader <br> <br>Calculator
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto py-4 py-lg-0">
+
+        
+
+              <div class="btn-group">
+                <button type="button" class="vishnu btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"  style="background-color: transparent;font-size: medium;padding-bottom: 22px;border: none;">
+                  CALCULATOR
+                </button>
+                <ul class="dropdown-menu">
+                
+                  <li><a class="dropdown-item" href="/cal" >SIP Calculator</a></li>
+                  <li><a class="dropdown-item" href="/lumpcal" >LumpSum Calculator</a></li>
+                  <li><a class="dropdown-item" href="/bmical" >BMI Calculator</a></li>
+                  
+                </ul>
+              </div>
+
+
+              <li class="nav-item">
+                
+                <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/youtube"
+                  >Youtube</a
+                >
+              </li>
+
+              <!-- <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/fb"
+                  >Facebook</a
+                >
+              </li> -->
+
+              <!-- <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/insta"
+                  >Instagram</a
+                >
+              </li> -->
+
+              <!-- <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/twitter"
+                  >Twitter Facebook </a
+                >
+              </li> -->
+
+              <!-- <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4" href="/"
+                  >Home</a
+                >
+              </li> -->
+              <li class="nav-item">
+                <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/post/new"
+                  >New Post</a
+                >
+              </li>
+
+
+              <% if (user) { %>
+                <!-- <%= console.log(`checking index ejs page ${user?.username}`) %> -->
+           
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4" style="text-align: center;" href="#"
+                    >Hii <%= user.username %>!</a
+                  >
+                </li>
+           
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/user/logout"
+                    >Logout</a
+                  >
+                </li>
+
+              <% } else { %>
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/auth/register"
+                    >Register</a
+                  >
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link px-lg-3 py-3 py-lg-4"  href="/users/login"
+                    >Login</a
+                  >
+                </li>
+              <% } %>
+
+              <div class="btn-group">
+                <button type="button" class="vishnu btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"  style="background-color: transparent;font-size: medium;padding-bottom: 22px;border: none;">
+                  Contact Us
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item"  href="/cryptoall"
+                    >Crypto Price Tracker</a</li>
+                  <li><a class="dropdown-item" href="https://opensea.io/vishnuji" target="_blank">My NFTs</a></li>
+                  <li><a class="dropdown-item" href="https://www.vishnuji.com" target="_blank">Contact Us</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#" >Support & Donation </a></li>
+                  <select id="categoryforcoin" name="category" style="text-align: center; border-radius: 30px;">
+                    <option value="bc1qkavu6489emq638ug7204yz5cv277rkr6pqvphc">
+                      Bitcoin
+                    </option>
+                    <option value="0xb1301092f1f405469AB4b9F0853880C4B620B3dD">
+                      Ethereum-ETH (BEP-20)
+                    </option>
+                    <option value="0xb1301092f1f405469AB4b9F0853880C4B620B3dD">
+                      USDT(BEP-20)
+                    </option>
+                    <option value="bnb1lmve8la9zumkvky9frnflz6fstr6r7m5svp36h">
+                      BNB Coin
+                    </option>
+                    <option value="D7WMg5W6Kx2VfZ7DLrbTXyAipELqgbSpHX">
+                      Dogecoin
+                    </option>
+                  </select>
+                  
+                  <button id="copy-btn" onclick="copyToClipboard()" style="margin-left: 60px;margin-top: 10px;border-radius: 30px;">Copy</button>
+                </ul>
+              </div>
+              
+
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+      
+<script>
+  function copyToClipboard() {
+    var category = document.getElementById("categoryforcoin");
+    var selecteditem = category.options[category.selectedIndex];
+    var selectedValue = category.options[category.selectedIndex].value;
+    var dummy = document.createElement("textarea");
+    document.body.appendChild(dummy);
+    dummy.value = selectedValue;
+    dummy.select();
+    document.execCommand("copy");
+    document.body.removeChild(dummy);
+  
+    var btn = document.getElementById("copy-btn");
+    btn.textContent = "Copied";
+    // console.log(btn.textContent);
+    console.log(selecteditem.textContent);
+    console.log(dummy.value);
+    alert(`You selected ${selecteditem.textContent} and the address is ${dummy.value}`);
+
+  
+    setTimeout(function() {
+      btn.textContent = "Copy";
+    }, 2000);
+  }
+  </script>
