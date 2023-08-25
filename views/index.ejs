@@ -29,66 +29,13 @@
     <!-- Page Header-->
     <%- include('./layouts/header.ejs'); %>
 
-    <h2>List Of Blogs:</h2>
-    <form action="/route" method="post">
-      <label for="category">Choose a category:</label>
-      <select id="category" name="category">
-        <option selected>All</option>
-        <option value="1">Art and design blogs</option>
-        <option value="2">Computer science and Technology</option>
-        <option value="3">Political blogs</option>
-        <option value="4">Movie blogs</option>
-        <option value="5">Sports blogs</option>
-        <option value="6">Business blogs</option>
-        <option value="7">Personal finance blogs</option>
-        <option value="8">Blockchain & Cryptocurrency</option>
-        <option value="9">Food Blog</option>
-        <option value="9">Travel Blog</option>
-        <option value="10">Other</option>
-        <option value="11">General</option>
-      </select>
-      <input type="submit" value="Submit" />
-    </form>
 
-    <!-- Main Content below -->
-    <div class="container px-4 px-lg-5">
-      <div class="row gx-4 gx-lg-5 justify-content-center">
-        <div class="col-md-10 col-lg-8 col-xl-7">
-          <!-- Post preview-->
+        
+ 
+   
+    
 
-          <% posts.reverse(); posts.map((item)=>{ %>
-          <div class="post-preview">
-            <a href="/post/<%= item._id %>">
-              <h2 class="post-title"><%= item.title %></h2>
-              <h3 class="post-subtitle"><%= item.description %></h3>
-              <!-- <%= item.image %> -->
-              <%= item.category %>
-            </a>
-            <p class="post-meta">
-              <span>Posted by</span>
-              <a href="#!" aria-label="View profile of <%= item.username %>"
-                ><%= item.username %></a
-              >
-
-              on <%= item.indianDate %> at <%= item.indianTime %>
-            </p>
-          </div>
-          <!-- Divider-->
-          <hr class="my-4" />
-
-          <% }) %>
-
-          <!-- Pager-->
-          <!-- <div class="d-flex justify-content-end mb-4">
-            <a class="btn btn-primary text-uppercase" href="#!"
-              >Older Posts →</a
-            >
-          </div> -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Footer-->
+  <!-- Footer-->
     <%- include('./layouts/footer.ejs'); %>
     <!-- Bootstrap core JS-->
     <%- include('./layouts/scriptag.ejs'); %>
