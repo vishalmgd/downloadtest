@@ -162,13 +162,13 @@ const twitterpost = async (req, res) => {
       // Instead of downloading the video, send the video URL to the client
        console.log("outside getVideoUrl function",videoUrl);
       // handleFormSubmit(videoUrl, res);
-      // // res.json({ videoUrl: videoUrl });
-      res.render("twitterpage", {
-        title: "Twitterpage",
-        // hello: "vishnu how are you",
-        dimurl: videoUrl,
-        // totalnovideo: req.session.totalvideo,
-      });
+      res.json({ videoUrl: videoUrl });
+      // res.render("twitterpage", {
+      //   title: "Twitterpage",
+      //   // hello: "vishnu how are you",
+      //   dimurl: videoUrl,
+      //   // totalnovideo: req.session.totalvideo,
+      // });
     } else {
       res.status(404).json({ error: "Video URL not found." });
     }
