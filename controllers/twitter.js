@@ -132,23 +132,26 @@ const twitterpost = async (req, res) => {
         // await page.waitForSelector("video");
         await page.waitForSelector("video", { timeout: 90000 }); // Timeout set to 5 seconds (5,000 milliseconds)
 
-        const videoElement = await page.$("video");
-        const videoUrl = await videoElement.evaluate((element) => element.src);
-        console.log("inside getVideoUrl function",videoUrl);
+        // const videoElement = await page.$("video");
+        // const videoUrl = await videoElement.evaluate((element) => element.src);
+        // console.log("inside getVideoUrl function",videoUrl);
     
-        return videoUrl;
+        // return videoUrl;
 
-        // const tweetData = await page.evaluate(
-        //   () => {
-        //     const videoElement = document.querySelector("video");
-        //     return {
-        //       videoUrl: videoElement.src,
-        //     };
-        //   },
-        //   { timeout: 90000 } // Timeout set to 90 seconds (90,000 milliseconds)
-        // );
+      const tweetData = await page.evaluate(
+          () => {
+            const videoElement = document.querySelector("video");
+            console.log("inside evaluate",videoElement);
+            return {
+              videoUrl: videoElement.src,
+            };
+          },
+          { timeout: 90000 } // Timeout set to 90 seconds (90,000 milliseconds)
+        );
+        console.log("check tweetData",tweetData);
 
-        // return tweetData.videoUrl;
+        return tweetData.videoUrl;
+        
       } catch (error) {
         console.error("Error:", error);
       } finally {
@@ -162,13 +165,13 @@ const twitterpost = async (req, res) => {
       // Instead of downloading the video, send the video URL to the client
        console.log("outside getVideoUrl function",videoUrl);
       // handleFormSubmit(videoUrl, res);
-      res.json({ videoUrl: videoUrl });
-      // res.render("twitterpage", {
-      //   title: "Twitterpage",
-      //   // hello: "vishnu how are you",
-      //   dimurl: videoUrl,
-      //   // totalnovideo: req.session.totalvideo,
-      // });
+      // res.json({ videoUrl: videoUrl });
+      res.render("twitterpage", {
+        title: "Twitterpage",
+        // hello: "vishnu how are you",
+        dimurl: videoUrl,
+        // totalnovideo: req.session.totalvideo,
+      });
     } else {
       res.status(404).json({ error: "Video URL not found." });
     }
@@ -190,27 +193,27 @@ const twitterpost = async (req, res) => {
   }
 };
 
-handleFormSubmit = async (urlstr, res) => {
-  try {
-    const response = await axios({
-      method: "GET",
-      url: urlstr,
-      responseType: "stream",
-    });
+// handleFormSubmit = async (urlstr, res) => {
+//   try {
+//     const response = await axios({
+//       method: "GET",
+//       url: urlstr,
+//       responseType: "stream",
+//     });
 
-    const filename = "Twittervideo.mp4";
-    // console.log(`this item isin handlesubmit if block ext check ${urlstr}`);
-    // console.log("======================================================");
-    res
-      .status(200)
-      .set("Content-Type", "video/mp4")
-      .set("Content-Disposition", "attachment; filename=" + filename);
+//     const filename = "Twittervideo.mp4";
+//     // console.log(`this item isin handlesubmit if block ext check ${urlstr}`);
+//     // console.log("======================================================");
+//     res
+//       .status(200)
+//       .set("Content-Type", "video/mp4")
+//       .set("Content-Disposition", "attachment; filename=" + filename);
 
-    response.data.pipe(res);
-  } catch (error) {
-    console.log(`Error: ${error}`);
-    res.status(500).send(error);
-  }
-};
+//     response.data.pipe(res);
+//   } catch (error) {
+//     console.log(`Error: ${error}`);
+//     res.status(500).send(error);
+//   }
+// };
 
 module.exports = { twitterdld, twitterpost, twitterdownload };
