@@ -161,6 +161,50 @@ const twitterpost = async (req, res) => {
 
     const videoUrl = await getVideoUrl(tweetUrl);
 
+    //////////
+
+    /////////one imprtant checks
+
+    // Define the function to convert blob URL to downloadable link
+async function convertBlobToDownloadable(blobUrl, filename) {
+  try {
+    const response = await fetch(blobUrl);
+    const blob = await response.blob();
+
+    const objectUrl = URL.createObjectURL(blob);
+
+    const downloadLink = document.createElement('a');
+    downloadLink.href = objectUrl;
+    downloadLink.download = filename || 'downloaded-file';
+    downloadLink.style.display = 'none';
+
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    console.log("inside convert blob url downloadLink",downloadLink);
+    console.log("inside convert blob url downloadLink.download",downloadLink.download);
+
+    // Clean up by revoking the object URL
+    URL.revokeObjectURL(objectUrl);
+   
+
+    console.log('Download initiated.');
+  } catch (error) {
+    console.error('Error converting blob to downloadable:', error);
+  }
+}
+
+// Check if the video URL is a blob URL and convert if needed
+if (videoUrl && videoUrl.startsWith('blob:')) {
+  const filename = 'downloaded-video.mp4';
+  convertBlobToDownloadable(videoUrl, filename);
+}
+
+
+
+
+
+    ///////
+
     if (videoUrl) {
       // Instead of downloading the video, send the video URL to the client
        console.log("outside getVideoUrl function",videoUrl);
